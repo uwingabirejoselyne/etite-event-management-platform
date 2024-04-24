@@ -1,0 +1,1 @@
+# etite-event-management-platform
