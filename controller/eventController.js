@@ -11,4 +11,19 @@ const createEvent = async (req, res) => {
     }
 };
 
-module.exports = {createEvent};
+const updateEvent = async(req,res) =>{
+    const {id} = req.params
+
+    try {
+        const updateEvent = await Event.findByIdAndUpdate(id,req.body, {
+            new: true
+        })
+        res.json(updateEvent)
+       
+    } catch (error) {
+       throw new Error(error) 
+    }
+}
+
+
+module.exports = {createEvent,updateEvent};
