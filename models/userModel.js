@@ -31,7 +31,7 @@ var userSchema = new mongoose.Schema({
         },
         numberOfTickets: {
              type: Number,
-      required: true
+       required: true
         }
       }]
     
