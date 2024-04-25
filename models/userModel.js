@@ -26,9 +26,9 @@ var userSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
-      role: {
+      standard: {
         type: String,
-        default: "admin",
+        default: "user",
       },
       bookings:[{
         eventId: {
