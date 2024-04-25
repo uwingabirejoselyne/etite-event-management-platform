@@ -50,4 +50,16 @@ const updatingBookings = async (req,res) =>{
     }
 
 }
-module.exports = {createBooking,getUserBookings,updatingBookings}
+
+const cancelingBookings = async (req,res) =>{
+    const { bookingId } = req.params;
+    try {
+        await Booking.findByIdAndDelete(bookingId);
+        res.json({ message: 'Booking canceled successfully' });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+}
+module.exports = {createBooking,getUserBookings,updatingBookings,cancelingBookings}
