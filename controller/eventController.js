@@ -25,5 +25,17 @@ const updateEvent = async(req,res) =>{
     }
 }
 
+const deleteEvent = async(req,res) =>{
+    const {id} = req.params
 
-module.exports = {createEvent,updateEvent};
+    try {
+        const deleteEvent = await Event.findByIdAndDelete(id)
+        res.json(deleteEvent)
+       
+    } catch (error) {
+       throw new Error(error) 
+    }
+}
+
+
+module.exports = {createEvent,updateEvent,deleteEvent};
