@@ -1,9 +1,10 @@
 const Booking = require('../models/bookingModel')
 const Event = require('../models/eventModel')
+const User = require('../models/userModel')
 
 const createBooking = async (req,res) =>{
 try {
-    const {eventId,numberOfTicket} = req.body
+    const {eventId,userId,numberOfTicket} = req.body
     const event =await Event.findById(eventId)
 
     if(!event) {
@@ -16,7 +17,7 @@ try {
     const booking = new Booking({
         eventId,
         numberOfTicket,
-        userId :req.user.id
+        userId :userId
     })
     await booking.save()
     res.status(201).json(booking)

@@ -10,10 +10,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 const userRoute = require('./routes/userRoute')
 const eventRoute = require('./routes/eventRoute')
-
+const bookingRoute = require('./routes/bookingRoute')
 app.use('/api/user',userRoute)
 app.use('/api/event',eventRoute)
-
+app.use('/api/booking',bookingRoute)
 app.listen(PORT, () => {
     console.log(`Server running at port ${PORT}`);
   });
