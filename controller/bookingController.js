@@ -23,7 +23,7 @@ try {
 }
 }
 
-const getBooking = async (req,res) =>{
+const getUserBookings = async (req,res) =>{
     const {eventId} = req.params
 try {
     const bookings = await Booking.find({ eventId });
@@ -37,4 +37,17 @@ try {
     res.status(500).json({ error: 'Internal Server Error' });
 }
 }
-module.exports = {createBooking,getBooking}
+
+const updatingBookings = async (req,res) =>{
+    const { bookingId } = req.params;
+    const { numberOfTicket } = req.body;
+    try {
+        const updatedBooking = await Booking.findByIdAndUpdate(bookingId, { numberOfTicket }, { new: true });
+        res.json(updatedBooking);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+}
+module.exports = {createBooking,getUserBookings,updatingBookings}
