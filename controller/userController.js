@@ -16,10 +16,9 @@ const createUser = async (req,res)=>{
 
 }
 
-const loginUser = asyncHandler(async (req, res) => {
+const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const findUser = await User.findOne({ email });
-  console.log(findUser.password );
   if (findUser && (await findUser.isPasswordMatched(password))) {
     const refreshToken = await generateRefreshToken(findUser._id); 
     const updateUser = await User.findByIdAndUpdate(
@@ -44,5 +43,5 @@ const loginUser = asyncHandler(async (req, res) => {
   } else {
     throw new Error("invalid credentials");
   }
-});
+}
 module.exports = {createUser,loginUser}
