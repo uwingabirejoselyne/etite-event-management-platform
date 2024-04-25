@@ -1,6 +1,5 @@
 const Booking = require('../models/bookingModel')
 const Event = require('../models/eventModel')
-const User = require('../models/userModel')
 
 const createBooking = async (req,res) =>{
 try {
@@ -14,16 +13,28 @@ try {
     if (numberOfTicket > event.ticketAvailability) {
         return res.status(400).json({ error: 'Not enough tickets available' });
     }
-    const booking = new Booking({
-        eventId,
-        numberOfTicket,
-        userId :userId
-    })
-    await booking.save()
-    res.status(201).json(booking)
+    const newBooking = await Booking.create({ eventId, userId, numberOfTicket });
+    event.ticketAvailability -= numberOfTicket;
+    await event.save();
+    res.status(201).json(newBooking)
 } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Internal Server Error' });
 }
 }
-module.exports = {createBooking}
+
+const getBooking = async (req,res) =>{
+    const {eventId} = req.params
+try {
+    const bookings = await Booking.find({ eventId });
+    if (!bookings) {
+        return res.status(404).json({ error: 'Bookings not found' });
+    }
+    res.json(bookings);
+    
+} catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+}
+}
+module.exports = {createBooking,getBooking}
