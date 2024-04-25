@@ -8,8 +8,10 @@ dbConnect()
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+const userRoute = require('./routes/userRoute')
 const eventRoute = require('./routes/eventRoute')
 
+app.use('/api/user',userRoute)
 app.use('/api/event',eventRoute)
 
 app.listen(PORT, () => {
