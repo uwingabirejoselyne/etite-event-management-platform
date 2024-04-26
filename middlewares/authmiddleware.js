@@ -21,8 +21,8 @@ const authMiddleware = async (req, res, next) => {
 }
 
 const isUser = async (req, res, next) => {
+  const  {email}  = req.user
   try {
-  const  {email}  = req.body;
     const standardUser = await User.findOne({ email });
     if (!standardUser || standardUser.standard !== "user") {
       throw new Error('You are not an user');
