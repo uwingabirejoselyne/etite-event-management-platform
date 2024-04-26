@@ -46,4 +46,27 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error("invalid credentials");
   }
 })
-module.exports = {createUser,loginUser}
+
+const updateUser = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  validateMongoDbId(_id);
+  try {
+    const updateUser = await User.findByIdAndUpdate(
+      _id,
+      {
+        firstname: req?.body?.firstname,
+        lastname: req?.body?.lastname,
+        email: req?.body?.email,
+        mobile: req?.body?.mobile,
+        password: req?.body?.password,
+      },
+      {
+        new: true,
+      }
+    );
+    res.json(updateUser);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+module.exports = {createUser,loginUser,updateUser}
