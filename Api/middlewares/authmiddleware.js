@@ -1,7 +1,9 @@
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
+const asyncHandler = require("express-async-handler");
 
-const authMiddleware = async (req, res, next) => {
+
+const authMiddleware = asyncHandler(async (req, res, next) => {
   let token;
   if (req?.headers?.authorization?.startsWith("Bearer")) {
     token = req.headers.authorization.split(" ")[1];
@@ -18,7 +20,7 @@ const authMiddleware = async (req, res, next) => {
   } else {
     throw new Error("Authorization header missing or invalid");
   }
-}
+})
 
 const isUser = async (req, res, next) => {
   const  {email}  = req.user
