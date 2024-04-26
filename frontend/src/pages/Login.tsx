@@ -50,8 +50,8 @@ const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center pt-20">
       <p className="flex flex-col items-center pt-24 font-lora text-5xl text-white ">
-        <span className="font-bold uppercase">moni</span>
-        <span className="font-medium italic">share</span>
+        <span className="font-bold uppercase">Etite</span>
+        <span className="font-medium italic">Events</span>
       </p>
       <div className="mx-auto flex w-full max-w-md flex-col gap-12 px-4">
         <div className="pt-8 text-center">

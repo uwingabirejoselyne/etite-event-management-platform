@@ -10,7 +10,7 @@ const LandingPage = () => {
         <span className="font-medium italic">Event Management</span>
       </p>
       <p className="flex flex-col items-center truncate py-10 font-lora text-xl font-thin text-white sm:px-14 sm:text-2xl">
-        <span>Start to see our event</span>
+        <span>Start to see ou event</span>
         <span>using our website</span>
       </p>
       <Button color="filled" className="mx-auto w-full max-w-md" onClick={() => navigate('/login')}>

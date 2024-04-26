@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       colors: {
         indigo: {
-          DEFAULT: '#265E78',
+          DEFAULT: '#265E00',
           400: '#3E7591',
           200: '#64A1C0',
           100: '#DFEAF0',
